@@ -1,12 +1,14 @@
 #!/bin/bash
- 
+# This script will disable printer sharing on each printer installed on macOS
+#
+#
 InstalledPrinters=$( lpstat -a | cut -d " " -f 1 )
 SelectPrinters=$( echo "$InstalledPrinters" | grep _ )
- 
+#
 for P in ${InstalledPrinters}
-do
+ do
     lpadmin -p $P -o printer-is-shared=false
  
-done
-date=$( date "+%m/%d/%y" )
-echo "Yes on $date"
+ done
+exit
+# end of script
